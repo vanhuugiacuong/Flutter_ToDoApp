@@ -78,11 +78,24 @@ class TodoView extends GetView<TodoController> {
                         ],
                       ),
                     ),
-                    Checkbox(
-                      value: todo['is_done'] ?? false,
-                      onChanged: (value) {
-                        // controller.doneTask(todo['id'], value!);
-                      },
+                    Transform.scale(
+                      scale: 1.4, // Tăng size
+                      child: Checkbox(
+                        shape: const CircleBorder(),
+                        value: todo['is_done'] ?? false,
+                        onChanged: (value) {
+                          controller.doneTask(todo['id'], value!);
+                        },
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith<Color>(
+                          (states) => Colors.black,
+                        ),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: const VisualDensity(
+                          horizontal: -2,
+                          vertical: -2,
+                        ),
+                      ),
                     ),
                     IconButton(
                       icon: const Icon(Icons.edit),
@@ -245,10 +258,7 @@ class TodoView extends GetView<TodoController> {
                   const SizedBox(height: 16),
                   TextField(
                     controller: nameController,
-                    style:  TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     decoration: InputDecoration(
                       labelText: 'Title'.tr,
                       border: OutlineInputBorder(),
@@ -257,7 +267,7 @@ class TodoView extends GetView<TodoController> {
                   const SizedBox(height: 12),
                   TextField(
                     controller: descController,
-                    style:  TextStyle(fontSize: 15, color: Colors.black87),
+                    style: TextStyle(fontSize: 15, color: Colors.black87),
                     decoration: InputDecoration(
                       labelText: 'Description'.tr,
                       border: OutlineInputBorder(),

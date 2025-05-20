@@ -69,22 +69,19 @@ class TodoController extends GetxController {
     }
   }
 
-  // Future<void> doneTask(int id, bool value) async {
-  //   try {
-  //     await Supabase.instance.client
-  //         .from('todos')
-  //         .update({'is_done': value})
-  //         .eq('id', id);
-  //     final index = todoData.indexWhere((item) => item['id'] == id);
-  //     if (index != -1) {
-  //       todoData[index] = {...todoData[index], 'is_done': value};
-  //       todoData.refresh();
-  //     }
-  //     Get.snackbar('Success', "Update todo success");
-  //   } catch (e) {
-  //     Get.snackbar('Error', 'Update todo failed');
-  //   }
-  // }
+  Future<void> doneTask(int id, bool isDone) async {
+    try {
+      await Supabase.instance.client
+          .from('todos')
+          .update({'is_done': isDone})
+          .eq('id', id);
+      // Cập nhật lại danh sách task
+      await getTodo();
+      Get.snackbar('Success'.tr, 'Task updated'.tr);
+    } catch (e) {
+      Get.snackbar('Error'.tr, 'Update todo failed'.tr);
+    }
+  }
 
   @override
   void onReady() async {
