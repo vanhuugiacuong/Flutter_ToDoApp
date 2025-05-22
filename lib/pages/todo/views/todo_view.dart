@@ -13,7 +13,7 @@ class TodoView extends GetView<TodoController> {
 
   @override
   Widget build(BuildContext context) {
-    final TodoController controller = Get.put(TodoController());
+    // final TodoController controller = Get.put(TodoController());
     return Scaffold(
       appBar: AppBar(title: Text('TodosView'.tr), centerTitle: true),
       body: Obx(() {
@@ -79,7 +79,7 @@ class TodoView extends GetView<TodoController> {
                       ),
                     ),
                     Transform.scale(
-                      scale: 1.4, // Tăng size
+                      scale: 1.2, // Tăng size
                       child: Checkbox(
                         shape: const CircleBorder(),
                         value: todo['is_done'] ?? false,
@@ -97,6 +97,7 @@ class TodoView extends GetView<TodoController> {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 8),
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () {
