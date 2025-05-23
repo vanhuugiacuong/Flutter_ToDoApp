@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertodosappsupabase/app/my_translations.dart';
+import 'package:fluttertodosappsupabase/pages/signup/controllers/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app/routes/app_pages.dart';
@@ -13,6 +14,8 @@ void main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhteHlvc3FmdnFrZmV1YXZ0cnh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczOTQxMDgsImV4cCI6MjA2Mjk3MDEwOH0.hJguz4DDzvazu-LNmjKfLb_NiSG8xvhMSDPFEvMPfyg',
   );
+
+  Get.put(SignupController()); // Initialize SignupController
 
   runApp(const MyApp());
 }
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.INITIAL, // Ensure this points to the correct initial route
       getPages: AppPages.routes,
     );
   }

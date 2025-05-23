@@ -126,7 +126,9 @@ class TodoView extends GetView<TodoController> {
           color: const Color(0xFFB9F6CA), // Xanh lá nhạt
         ),
         child: RawMaterialButton(
-          shape: const CircleBorder(),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
           elevation: 6,
           onPressed: () {
             _showAddDialog(context, controller);

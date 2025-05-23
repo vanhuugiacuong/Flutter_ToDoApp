@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../controllers/setting_controller.dart';
 
 class SettingView extends GetView<SettingController> {
@@ -54,8 +54,9 @@ class SettingView extends GetView<SettingController> {
           ListTile(
             leading: const Icon(Icons.logout),
             title: Text('Logout'.tr),
-            onTap: () {
-              // Handle logout
+            onTap: () async {
+              await Supabase.instance.client.auth.signOut();
+              Get.offAllNamed('/login');
             },
           ),
         ],
