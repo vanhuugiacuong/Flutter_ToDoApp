@@ -1,21 +1,20 @@
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignupController extends GetxController {
   final count = 0.obs;
 
   // Local storage for user accounts
-  final Map<String, String> _userAccounts = {};
 
   Future<String?> signUp(String username, String password) async {
-    if (_userAccounts.containsKey(username)) {
-      return 'Tài khoản đã tồn tại';
+    try {
+      await Supabase.instance.client
+          .from('profiles')
+          .insert({'username': username, 'password': password});
+      return null; // Thành công
+    } catch (e) {
+      return e.toString();
     }
-    _userAccounts[username] = password;
-    return null; // Thành công
-  }
-
-  bool validateCredentials(String username, String password) {
-    return _userAccounts[username] == password;
   }
 
   @override

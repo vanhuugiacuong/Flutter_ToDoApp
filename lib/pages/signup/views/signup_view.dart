@@ -21,7 +21,7 @@ class SignupView extends GetView<SignupController> {
           children: [
             TextField(
               controller: usernameController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(labelText: 'Username'),
             ),
             TextField(
               controller: passwordController,
@@ -31,20 +31,24 @@ class SignupView extends GetView<SignupController> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                final email = usernameController.text.trim();
+                final username = usernameController.text.trim();
                 final password = passwordController.text.trim();
 
-                if (email.isEmpty || password.isEmpty) {
-                  Get.snackbar('Lỗi', 'Email và mật khẩu không được để trống');
+                if (username.isEmpty || password.isEmpty) {
+                  Get.snackbar(
+                    'Lỗi',
+                    'Username và mật khẩu không được để trống',
+                  );
                   return;
                 }
 
-                final error = await controller.signUp(email, password);
+                final error = await controller.signUp(username, password);
                 if (error == null) {
                   Get.snackbar('Thành công', 'Đăng ký thành công');
                   Get.offAllNamed('/login');
                 } else {
                   Get.snackbar('Lỗi', error);
+                  print('Sign up failed: $error');
                 }
               },
               child: Text('Sign Up'),

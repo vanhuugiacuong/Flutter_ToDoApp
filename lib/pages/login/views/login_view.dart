@@ -41,7 +41,8 @@ class LoginView extends GetView<LoginController> {
 
                 final success = await controller.signIn(email, password);
                 if (success) {
-                 Get.offAllNamed(Routes.LAYOUT); // Ensure '/home' is correctly defined in AppPages
+                 Get.offAllNamed(Routes.LAYOUT);
+                  // Ensure '/home' is correctly defined in AppPages
                 } else {
                   // Error messages are already handled in the controller
                   print('Login failed');

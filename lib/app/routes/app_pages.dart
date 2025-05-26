@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../pages/auth/bindings/auth_binding.dart';
+import '../../pages/auth/views/auth_view.dart';
 import '../../pages/home/bindings/home_binding.dart';
 import '../../pages/home/views/home_view.dart';
 import '../../pages/login/bindings/login_binding.dart';
@@ -19,7 +22,9 @@ class AppPages {
   AppPages._();
 
   // static const INITIAL = Routes.LAYOUT;
-  static const INITIAL = _Paths.LOGIN;
+  // static const INITIAL = _Paths.LOGIN;
+
+  static final INITIAL = Supabase.instance.client.auth.currentSession?.user !=  null ? Routes.LAYOUT : Routes.AUTH;
 
   static final routes = [
     GetPage(
@@ -56,6 +61,11 @@ class AppPages {
       name: '/home',
       page: () => HomeView(), // Replace with your layout or todo page widget
       binding: HomeBinding(), // Ensure the correct binding is used
+    ),
+    GetPage(
+      name: _Paths.AUTH,
+      page: () => const AuthView(),
+      binding: AuthBinding(),
     ),
   ];
 }

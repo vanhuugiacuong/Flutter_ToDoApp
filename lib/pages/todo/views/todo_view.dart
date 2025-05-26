@@ -13,7 +13,6 @@ class TodoView extends GetView<TodoController> {
 
   @override
   Widget build(BuildContext context) {
-    // final TodoController controller = Get.put(TodoController());
     return Scaffold(
       appBar: AppBar(title: Text('TodosView'.tr), centerTitle: true),
       body: Obx(() {

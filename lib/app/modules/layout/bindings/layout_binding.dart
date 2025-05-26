@@ -8,6 +8,6 @@ class LayoutBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<LayoutController>(() => LayoutController());
 
-    Get.lazyPut(() => TodoController());
+    Get.lazyPut<TodoController>(() => (TodoController()));
   }
 }
