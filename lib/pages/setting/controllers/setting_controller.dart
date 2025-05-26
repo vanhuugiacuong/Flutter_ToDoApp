@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingController extends GetxController {
@@ -10,9 +11,17 @@ class SettingController extends GetxController {
   ];
 
   final count = 0.obs;
+  final currentLocale = Rx<Locale>(Get.locale ?? const Locale('en', 'US'));
+  var isDarkMode = false.obs;
 
   void changeLanguage(Locale locale) {
     Get.updateLocale(locale);
+    currentLocale.value = locale;
+  }
+
+  void toggleTheme() {
+    isDarkMode.value = !isDarkMode.value;
+    Get.changeThemeMode(isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
   }
 
   @override

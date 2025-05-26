@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Todos App',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
       translations: MyTranslations(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('en', 'US'), // Default locale

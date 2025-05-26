@@ -5,6 +5,8 @@ import '../../pages/auth/bindings/auth_binding.dart';
 import '../../pages/auth/views/auth_view.dart';
 import '../../pages/home/bindings/home_binding.dart';
 import '../../pages/home/views/home_view.dart';
+import '../../pages/loadingpage/bindings/loadingpage_binding.dart';
+import '../../pages/loadingpage/views/loadingpage_view.dart';
 import '../../pages/login/bindings/login_binding.dart';
 import '../../pages/login/views/login_view.dart';
 import '../../pages/setting/bindings/setting_binding.dart';
@@ -24,7 +26,10 @@ class AppPages {
   // static const INITIAL = Routes.LAYOUT;
   // static const INITIAL = _Paths.LOGIN;
 
-  static final INITIAL = Supabase.instance.client.auth.currentSession?.user !=  null ? Routes.LAYOUT : Routes.AUTH;
+  static final INITIAL =
+      Supabase.instance.client.auth.currentSession?.user != null
+          ? Routes.LAYOUT
+          : Routes.AUTH;
 
   static final routes = [
     GetPage(
@@ -66,6 +71,11 @@ class AppPages {
       name: _Paths.AUTH,
       page: () => const AuthView(),
       binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOADINGPAGE,
+      page: () => const LoadingpageView(),
+      binding: LoadingpageBinding(),
     ),
   ];
 }

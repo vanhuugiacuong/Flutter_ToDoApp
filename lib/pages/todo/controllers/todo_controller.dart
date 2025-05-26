@@ -75,22 +75,18 @@ class TodoController extends GetxController {
           .from('todos')
           .update({'is_done': isDone})
           .eq('id', id);
-      // Cập nhật lại danh sách task
-      await getTodo();
+
+      // Cập nhật trực tiếp trong todoData thay vì gọi lại getTodo
+      final index = todoData.indexWhere((item) => item['id'] == id);
+      if (index != -1) {
+        todoData[index]['is_done'] = isDone;
+        todoData.refresh(); // Cập nhật lại observable
+      }
+
       Get.snackbar('Success'.tr, 'Task updated'.tr);
     } catch (e) {
       Get.snackbar('Error'.tr, 'Update todo failed'.tr);
     }
-  }
-
-  @override
-  void onReady() async {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void increment() => count.value++;
